@@ -171,12 +171,12 @@
                         </select>
                         <span class="fa fa-folder form-control-feedback right" aria-hidden="true"></span>
                       </div>
-                            {{-- <div class="col-md-9">
+                            <div class="col-md-9">
                               <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                 Asignaturas que serán justificadas
                                 clic en la asignatura para eliminar
                               </div>
-                            </div> --}}
+                            </div> 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <select class="form-control" name="motivo" id="motivoId">
                           <option value=''>Seleciona un motivo</option>
