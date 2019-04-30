@@ -1,3 +1,4 @@
+
 @extends('layouts.alumno')
 {{-- @include('alert::bootstrap') --}}
 
@@ -171,18 +172,17 @@
                         </select>
                         <span class="fa fa-folder form-control-feedback right" aria-hidden="true"></span>
                       </div>
-                            <div class="col-md-9">
+                            {{-- <div class="col-md-9">
                               <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                 Asignaturas que serán justificadas
-                                clic en la asignatura para eliminar
                               </div>
-                            </div> 
+                            </div> --}}
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <select class="form-control" name="motivo" id="motivoId">
                           <option value=''>Seleciona un motivo</option>
                           <option value='Medico'>Médico</option>
                           <option value='Laboral'>Laboral</option>
-                          <option value='Otros'>Otros</option>
+                          <option value='Actividad Extracurricular'>Actividad Extracurricular</option>
                         </select>
                         <span class="fa fa-book form-control-feedback right" aria-hidden="true"></span>
                       </div>
@@ -318,7 +318,8 @@
                     document.getElementById("alertBox").innerHTML="Debes indicar las fechas de tu inasistencia...(Click para cerrar)";
                     // alert("Debes indicar un rango de fechas");
                     isStepValid = false;
-                } else if( document.getElementById('panel-asignaturas').innerHTML === "No has seleccionado Asignaturas" ) {
+                } else if( document.getElementById('panel-asignaturas').innerHTML === "No has seleccionado Asignaturas" ||
+                           document.getElementById('panel-asignaturas').innerHTML =="" ) {
                     document.getElementById("alertBox").style.opacity=1;
                     document.getElementById("alertBox").innerHTML="Debes seleccionar al menos una asignatura...(Click para cerrar)";
                     // alert("Debes seleccionar al menos una asignatura");
@@ -438,7 +439,7 @@
           });
         }
       });
-      $(function() {
+  $(function() {
         var arr = [];
         $("#carrito").click(function() {
           var selectobject=document.getElementById("carritoJC");
@@ -457,15 +458,37 @@
             }
           }
         );
+        $(document).on('click', '.ramo', function () {
+         var selectobject=document.getElementById("carritoJC");
+         nombre = this.innerHTML;
+         posicion =-1;
+           for (var i = 0; i < arr.length; i++) {
+             if(arr[i].asignatura ==nombre)
+              { 
+               posicion=i;      
+              }
+           }
+           var opt = document.createElement('option');
+           opt.value = nombre;
+           opt.innerHTML = nombre;
+           selectobject.appendChild(opt);                              
+           arr.splice( posicion, 1 );
+           console.log(arr)
+           display_asignaturas(arr);
+         }
+        );
       });
       function display_asignaturas(arr) {
         var newHTML = "";
-        for (var i = 0; i < arr.length; i++) {
-          newHTML = newHTML + '<span>' + arr[i].asignatura + '</span>';
+        if(arr.length >0){
+          for (var i = 0; i < arr.length; i++) {
+            newHTML = newHTML + '<span class="ramo" ">'+ arr[i].asignatura + '</span>';
+          }
         }
         $("#panel-asignaturas").html(newHTML);
         $("#cursosArray").val(JSON.stringify(arr));
-      }
+      }  
+      
     });
   </script>
 @endsection
