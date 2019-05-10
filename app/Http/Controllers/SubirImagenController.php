@@ -27,10 +27,12 @@ class SubirImagenController extends Controller
         $input = Input::all();
         Log::Debug($input);
         Log::Debug(request()->route()->parameter('userId'));
-        Log::Debug($request->folio);
+        Log::Debug("NUMERO DE FOLIO: ".$request->folio);
         Log::Debug("SUBIR ARCHIVOS##############################################################");
         $time = Carbon::now();
         $image = $request->file('file');
+	//linea agregada 10052019
+        Log::Debug("NOMBRE".$request->file('file'));
         $extension = $image->getClientOriginalExtension();
         $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
         // Creating the file name: random string followed by the day, random number and the hour
@@ -44,6 +46,7 @@ class SubirImagenController extends Controller
             $imageUpload = new SubirImagen();
             $imageUpload->nfolio = $request->folio;
             $imageUpload->url = $directory.'/'.$filename;
+            Log::Debug("URL: ".$imageUpload->url);
             $imageUpload->save();
             return response()->json($upload_success, 200);
         }
