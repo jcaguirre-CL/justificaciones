@@ -36,7 +36,7 @@ class SubirImagenController extends Controller
         // Creating the file name: random string followed by the day, random number and the hour
         // $filename = str_random(8).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
         $nombreSinExtension = date_format($time,'Y').date_format($time,'m').str_random(8);
-        $filename = $nombreSinExtension.".".$extension;
+        $filename = $request->folio.".". $nombreSinExtension.".".$extension;
         // This is our upload main function, storing the image in the storage that named 'public'
         $upload_success = $image->storeAs($directory, $filename, 'public');
         // If the upload is successful, return the name of directory/filename of the upload.
