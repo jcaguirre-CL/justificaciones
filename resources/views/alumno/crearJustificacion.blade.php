@@ -189,6 +189,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <span id="loader"><i class="form-control-feedback fa fa-spinner fa-3x fa-spin"></i></span>
                         <label for="panel-asignaturas" class="control-label has-feedback">Asignaturas que serán justificadas:</label>
+                        <label for="panel-asignaturas" class="control-label has-feedback">(Click sobre asignatura para eliminar)</label>
                         <div id="panel-asignaturas" class="form-group has-feedback">No has seleccionado Asignaturas</div>
                         <div class="form-group">
                           {{-- <div class="col-sm-offset-3 col-sm-6"> --}}
