@@ -298,6 +298,7 @@
         function onFinishCallback(objs, context){
             console.log(document.getElementById('message').value.length);
             if( document.getElementById('message').value.length > 30 && document.getElementById('message').value.length < 500) {
+              $(".actionBar .buttonFinish").attr('disabled', 'disabled');
                 $('form').submit();
             } else {
                 document.getElementById("alertBox").style.opacity=1;
