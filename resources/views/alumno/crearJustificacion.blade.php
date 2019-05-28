@@ -203,12 +203,12 @@
                           ¿Faltaste a alguna evaluación?
                         <div class="checkbox form-group">
                           <label>
-                            <input name="tipoInasistencia" type="checkbox" value="SI" id="siprueba" class="validarStep"> SI
+                            <input name="tipoInasistencia" type="radio" name="opcion" value="SI" id="siprueba" class="validarStep"> SI
                           </label>
                         </div>
                         <div class="checkbox form-group">
                           <label>
-                            <input name="tipoInasistencia" type="checkbox" value="NO" id="noprueba" class="validarStep"> NO
+                            <input name="tipoInasistencia" type="radio" name="opcion" value="NO" id="noprueba" class="validarStep"> NO
                           </label>
                         </div>
                       </div>
