@@ -37,6 +37,8 @@ class LoginController extends Controller
                 return redirect('administrador/index');
             } elseif (auth()->user()->rol == 1) {
                 return redirect('coordinador/index');
+            }elseif (auth()->user()->rol == 3) {
+                return redirect('super/index');
             }
         } else {
             return back()
