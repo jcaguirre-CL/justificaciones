@@ -34,6 +34,9 @@ Route::middleware(['auth'])->group(function(){
   // Administrador
   Route::get('/administrador/index','AdministradorController@index')->name('administrador');
 
+  // Super coordinador
+  Route::get('/super/index','SuperController@index')->name('super');
+
   // Coordinador
   Route::get('/coordinador/index','CoordinadorController@index')->name('coordinador');
   Route::get('coordinador/cambiarContrasena', 'ContrasenaController@index')->name('contrasena.create')->middleware('auth:web');
@@ -65,6 +68,12 @@ Route::middleware(['auth'])->group(function(){
   Route::get('justificaciones/{role}', 'JustificacionController@show')->name('justificacion.show')->middleware('permission:justificacion.show');
   Route::get('coordinador/edicion/{id}', 'JustificacionController@edit')->name('justificacion.edit')->middleware('auth:web');
   Route::post('coordinador/update/{id}', 'JustificacionController@update')->name('justificacion.update')->middleware('auth:web');
+
+
+  // Route for super
+  Route::get('super/edicion/{id}', 'SuJustificacionController@edit')->name('justificacion.edit')->middleware('auth:web');
+  Route::post('super/update/{id}', 'SuJustificacionController@update')->name('justificacion.update')->middleware('auth:web');
+
 
 //  Route::post('coordinador/update', 'JustificacionController@udpdate')->name('justificacion.update');
 
