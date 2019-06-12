@@ -125,7 +125,7 @@ class JustificacionController extends Controller
         ])->first();
 
         $imagenes = DB::table('documento')
-            ->select('url')
+            ->select('url','nfolio','url')
             ->where('nfolio','like', $justifications->NFOLIO)
             ->get();
 

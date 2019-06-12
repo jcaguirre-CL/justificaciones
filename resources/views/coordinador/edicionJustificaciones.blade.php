@@ -39,46 +39,9 @@
                 <input type="hidden" id="cursosArray" name="cursosArray">
                 <input type="hidden" id="correoDocente" name="correoDocente">
                 <input type="hidden" id="correoCoordinador" name="correoCoordinador">
-                <div id="wizard" class="form_wizard wizard_horizontal">
-                  <ul class="wizard_steps">
-                    <li>
-                      <a href="#step-1">
-                        <span class="step_no">1</span>
-                        <span class="step_descr">
-                          Paso 1<br />
-                          <small>Datos Academicos Alumno</small>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#step-2">
-                        <span class="step_no">2</span>
-                        <span class="step_descr">
-                          Paso 2<br />
-                          <small>Datos Solicitud Alumno</small>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                    <a href="#step-3">
-                      <span class="step_no">3</span>
-                      <span class="step_descr">
-                        Paso 3<br />
-                        <small>Certificados Alumno</small>
-                      </span>
-                    </a>
-                  </li>
-                    <li>
-                      <a href="#step-4">
-                        <span class="step_no">4</span>
-                        <span class="step_descr">
-                          Paso 4<br />
-                          <small>Evaluacion y Comentarios</small>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                    <div id="step-1">
+                    <div>
+                      
+                    </div>
                       <div class="form-horizontal form-label-left">
                         {{-- @foreach($datosAlumno as $key => $data) --}}
                         {{-- @foreach($datosAlumno as $data)
@@ -127,8 +90,8 @@
                         </div>
 
                       </div>
-                    </div>
-                    <div id="step-2">
+                    
+                    
                       <h2 class="StepTitle">Datos Solicitud Alumno</h2><br>
                       <div class="col-md-12">
                         <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback" >
@@ -168,51 +131,20 @@
                         <label for="nombreDocente" class="control-label">Comentarios Solicitud:</label>
                         <textarea cols="40" rows="5" id="message" required="required" class="form-control" readonly="readonly" placeholder="{{ $justifications->COMENTARIO }}" name="{{ $justifications->COMENTARIO }}"></textarea>
                       </div>
-                    </div>
-                    <div id="step-3">
-                      <h2 class="StepTitle">Paso 3 Certificado Alumno</h2>
+                    
+                      <h2 class="StepTitle">Certificado Alumno > (Click para abrir imagenes.)</h2>
                       <div class="container">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                          <!-- Indicators -->
-                          <ol class="carousel-indicators">
-                            @foreach ($imagenes as $imagen)
-                              <li data-target="#myCarousel" data-slide-to="0" ></li>
-                            @endforeach
-                          </ol>
-                          <div class="carousel-inner">
-                            @php $i = 0; @endphp
-                            @foreach ($imagenes as $imagen )
-                              @if ($i == 0)
-                              <div class="item active">
-                                <img src="{{'/storage/'.$imagen->url}}" style="width:1200px; height:420px;" alt="justificacion">
-                              </div>
-                              @php $i = 1; @endphp
-                              @else
-                                <div class="item ">
-
-                                  <img src="{{'/storage/'.$imagen->url}}" style="width:1200px; height:420px;" alt="justificacion">
+                            @foreach ($imagenes as $key => $imagen )
+                                <div class="list-group">
+                                    <a href="{{'/storage/'.$imagen->url}}" class="list-group-item list-group-item-action" target="_blank">
+                                     <h4 class="list-group-item-heading">Imagen {{$key+1}}</h4>
+                                     <p class="list-group-item-text">URL:{{$imagen->url}}</p>
+                                     <p class="list-group-item-text">Folio:{{$imagen->nfolio}}</p>
+                                    </a>
                                 </div>
-                              @endif
                             @endforeach
-                          </div>
-                          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                            <span class="sr-only">Anterior</span>
-                          </a>
-                          <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            <span class="sr-only">Siguiente</span>
-                          </a>
-                        </div>
                       </div>
-
-
-                      <img src="/public/storage/2018/09/201804213710670.jpg" alt="asdas">
-
-                    </div>
-                    <div id="step-4">
-                      <h2 class="StepTitle">Evaluación y Comentarios</h2><br><br>
-
+                      <h2 class="StepTitle">Evaluación y Comentarios</h2><br>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <label>Evaluación:</label>
@@ -224,13 +156,11 @@
                         </div>
                       </div>
 
-                      <br><br><br><br><br>
+                      <br>
                       <label for="message">Ingrese máximo 500 caracteres:</label>
                       <textarea cols="40" rows="5" id="message" required="required" class="form-control" name="comentarioRechazo"></textarea>
-                    </div>
-                    {{-- <div class="form-group">
-                        <button type="submit" class="btn btn-primary" value="Send">Send</button>
-                    </div> --}}
+                    <br>
+                 <button  type="submit" id="submit" class="buttonFinish btn btn-default" style="display: inline;">Finalizar</button>
                 </div>
               </form>
               <!-- End SmartWizard Content -->
@@ -281,6 +211,13 @@
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') } });
 </script>
   <script type="text/javascript">
+     function onFinishCallback(objs, context){
+         console.log(document.getElementById('message').value.length);
+            if( document.getElementById('message').value.length > 1 ) {
+              var boton = document.getElementById("submit");
+               boton.disabled=true;
+                $('form').submit();
+        }
     Dropzone.autoDiscover = false;
     jQuery(document).ready(function() {
 
