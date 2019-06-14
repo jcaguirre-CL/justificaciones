@@ -29,6 +29,8 @@ class RedirectIfAuthenticated
               return redirect('coordinador\index');
             }elseif (auth()->user()->rol == 2) {
               return redirect('administrador\index');
+            }elseif (auth()->user()->rol == 3) {
+              return redirect('super\index');
             }
         }
 

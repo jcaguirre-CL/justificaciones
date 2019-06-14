@@ -86,7 +86,7 @@ class JustificacionController extends Controller
             logger("############################################33CONSOLA");
             return view('contrasena.cambiar', []);
         }
-        $justificacion  = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Pendiente']])->get();
+        $justificacion  = Justification::where([['correo_alum','like', auth()->user()->email]])->get();
         $cantEmitidas   = Justification::where('correo_alum','like', auth()->user()->email)->count();
         $cantAprobadas  = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'aprobada' ]])->count();
         $cantRechazadas = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'rechazada']])->count();
@@ -125,7 +125,7 @@ class JustificacionController extends Controller
         ])->first();
 
         $imagenes = DB::table('documento')
-            ->select('url')
+            ->select('url','nfolio','url')
             ->where('nfolio','like', $justifications->NFOLIO)
             ->get();
 

@@ -31,7 +31,7 @@ class AlumnoController extends Controller
             return view('contrasena.cambiar', []);
         }
 
-        $justificacion  = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Pendiente']])->get();
+        $justificacion  = Justification::where([['correo_alum','like', auth()->user()->email]])->get();
         $cantEmitidas   = Justification::where('correo_alum','like', auth()->user()->email)->count();
         $cantAprobadas  = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Aprobado' ]])->count();
         $cantRechazadas = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Rechazado']])->count();

@@ -1,3 +1,4 @@
+
 @extends('layouts.alumno')
 {{-- @include('alert::bootstrap') --}}
 
@@ -181,13 +182,14 @@
                           <option value=''>Seleciona un motivo</option>
                           <option value='Medico'>Médico</option>
                           <option value='Laboral'>Laboral</option>
-                          <option value='Otros'>Otros</option>
+                          <option value='Actividad Extracurricular'>Actividad Extracurricular</option>
                         </select>
                         <span class="fa fa-book form-control-feedback right" aria-hidden="true"></span>
                       </div>
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <span id="loader"><i class="form-control-feedback fa fa-spinner fa-3x fa-spin"></i></span>
                         <label for="panel-asignaturas" class="control-label has-feedback">Asignaturas que serán justificadas:</label>
+                        <label for="panel-asignaturas" class="control-label has-feedback">(Click sobre asignatura para eliminar)</label>
                         <div id="panel-asignaturas" class="form-group has-feedback">No has seleccionado Asignaturas</div>
                         <div class="form-group">
                           {{-- <div class="col-sm-offset-3 col-sm-6"> --}}
@@ -201,12 +203,12 @@
                           ¿Faltaste a alguna evaluación?
                         <div class="checkbox form-group">
                           <label>
-                            <input name="tipoInasistencia" type="checkbox" value="SI" id="siprueba" class="validarStep"> SI
+                            <input name="tipoInasistencia" type="radio" name="opcion" value="SI" id="siprueba" class="validarStep"> SI
                           </label>
                         </div>
                         <div class="checkbox form-group">
                           <label>
-                            <input name="tipoInasistencia" type="checkbox" value="NO" id="noprueba" class="validarStep"> NO
+                            <input name="tipoInasistencia" type="radio" name="opcion" value="NO" id="noprueba" class="validarStep"> NO
                           </label>
                         </div>
                       </div>
@@ -296,6 +298,7 @@
         function onFinishCallback(objs, context){
             console.log(document.getElementById('message').value.length);
             if( document.getElementById('message').value.length > 30 && document.getElementById('message').value.length < 500) {
+              $(".actionBar .buttonFinish").attr('disabled', 'disabled');
                 $('form').submit();
             } else {
                 document.getElementById("alertBox").style.opacity=1;
@@ -317,7 +320,8 @@
                     document.getElementById("alertBox").innerHTML="Debes indicar las fechas de tu inasistencia...(Click para cerrar)";
                     // alert("Debes indicar un rango de fechas");
                     isStepValid = false;
-                } else if( document.getElementById('panel-asignaturas').innerHTML === "No has seleccionado Asignaturas" ) {
+                } else if( document.getElementById('panel-asignaturas').innerHTML === "No has seleccionado Asignaturas" ||
+                           document.getElementById('panel-asignaturas').innerHTML =="" ) {
                     document.getElementById("alertBox").style.opacity=1;
                     document.getElementById("alertBox").innerHTML="Debes seleccionar al menos una asignatura...(Click para cerrar)";
                     // alert("Debes seleccionar al menos una asignatura");
@@ -437,7 +441,7 @@
           });
         }
       });
-      $(function() {
+  $(function() {
         var arr = [];
         $("#carrito").click(function() {
           var selectobject=document.getElementById("carritoJC");
@@ -456,15 +460,37 @@
             }
           }
         );
+        $(document).on('click', '.ramo', function () {
+         var selectobject=document.getElementById("carritoJC");
+         nombre = this.innerHTML;
+         posicion =-1;
+           for (var i = 0; i < arr.length; i++) {
+             if(arr[i].asignatura ==nombre)
+              { 
+               posicion=i;      
+              }
+           }
+           var opt = document.createElement('option');
+           opt.value = nombre;
+           opt.innerHTML = nombre;
+           selectobject.appendChild(opt);                              
+           arr.splice( posicion, 1 );
+           console.log(arr)
+           display_asignaturas(arr);
+         }
+        );
       });
       function display_asignaturas(arr) {
         var newHTML = "";
-        for (var i = 0; i < arr.length; i++) {
-          newHTML = newHTML + '<span>' + arr[i].asignatura + '</span>';
+        if(arr.length >0){
+          for (var i = 0; i < arr.length; i++) {
+            newHTML = newHTML + '<span class="ramo" ">'+ arr[i].asignatura + '</span>';
+          }
         }
         $("#panel-asignaturas").html(newHTML);
         $("#cursosArray").val(JSON.stringify(arr));
-      }
+      }  
+      
     });
   </script>
 @endsection
