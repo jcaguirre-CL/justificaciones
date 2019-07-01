@@ -77,7 +77,7 @@ class JustificacionController extends Controller
             $justification->save();
         }
         event(new JustificationSubmitted($request['folio']));
-        return redirect()->intended('alumno/index')->with('success', 'JUSTIFICACION CREADA CORRECTAMENTE !!!                      Presiona x para cerrar');
+        return redirect()->intended('alumno/index')->with('success', 'Justificacion creada correctamente.                    Presiona x para cerrar');
     }
 
     public function revisar()

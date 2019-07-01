@@ -57,6 +57,9 @@
                 </div>
                 <div class="clearfix"></div>
               </form>
+              <div>
+                  <h6>Dudas a justificacionesavaras@gmail.com <span class="label label-default"></span></h6>
+                 </div>
             </section>
           </div>
         </div>
