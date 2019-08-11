@@ -38,7 +38,7 @@
                 </div>
                 <h1>Sistemas de Justificaciones</h1>
                 <div>
-                 <h6>Portal deshabilitado hasta inicio del segundo semestre. 05/08/2019 <span class="label label-default"></span></h6>
+                 <h6>Portal deshabilitado hasta el 12/08/2019 <span class="label label-default"></span></h6>
                 </div>
                 <div>
                  
