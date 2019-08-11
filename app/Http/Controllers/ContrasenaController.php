@@ -44,7 +44,7 @@ class ContrasenaController extends Controller
             } elseif (auth()->user()->rol == 2) {
                 $usuario = 'administrador';
             }
-            return redirect()->intended($usuario.'/index')->with('success', 'CONTRASEÑA MODIFICADA CORRECTAMENTE !!!                      Presiona x para cerrar');;
+            return redirect()->intended($usuario.'/index')->with('success', 'Contaseña modificada correctamente.                     Presiona x para cerrar');;
         } else {
             $error = array('current-password' => 'Please enter correct current password');
             return response()->json(array('error' => $error), 400);
