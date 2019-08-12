@@ -38,13 +38,22 @@
                 </div>
                 <h1>Sistemas de Justificaciones</h1>
                 <div>
-                 <h6>Portal deshabilitado hasta el 12/08/2019 <span class="label label-default"></span></h6>
+                  <input type="email" class="form-control" placeholder="Correo Institucional" required="" name="email" value="{{ old('email') }}" />
+                  @if($errors->has('email'))
+                    {{ $errors->first('email', ':message') }}
+                  @endif
                 </div>
                 <div>
-                 
+                  <input type="password" class="form-control" placeholder="Contraseña (RUT sin puntos ni guion)" required="" name="password" />
+                  @if($errors->has('password'))
+                  <span class="help-block">
+                    {{ $errors->first('password') }}
+                  </span>
+                  @endif
                 </div>
                 <div>
-                 
+                  <button class="btn btn-primary btn-block">Acceder</button>
+                  <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
                 </div>
                 <div class="clearfix"></div>
               </form>
@@ -59,6 +68,20 @@
             <div class="container imagenLogoRegistro  col-md-offset-3">
               <img src="{{ asset('build/images/ivaras.png') }}" class="img-responsive" alt="Cinque Terre" width="40%" >
             </div>
+            <section class="login_content">
+              <form method="POST" action="{{ route('password.email') }}">
+                @csrf
+                <h1>Reestablecer contraseña</h1>
+                <div>
+                  <input type="email" class="form-control" placeholder="Email" name="email" required />
+                </div>
+                <div>
+                  <button class="btn btn-primary btn-block">Recuperar</button>
+                  <a class="reset_pass" href="#signin">Volver</a>
+                </div>
+                <div class="clearfix"></div>
+              </form>
+            </section>
           </div>
         </div>
       </div>
