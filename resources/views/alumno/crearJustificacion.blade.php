@@ -391,8 +391,8 @@
           ],
           "firstDay": 0
         },
-        "startDate": "01/03/2019",
-        "endDate": "02/03/2019"
+        "startDate": "12/08/2019",
+        "endDate": "12/08/2019"
       });
       Dropzone.autoDiscover = false;
       $("div#my-awesome-dropzone").dropzone({
