@@ -13,6 +13,7 @@ favor coordinar con alumno(a) para rendir evaluación si corresponde.
 * Carrera: {{ $carreraAlumno }}
 * Fecha justificada: {{ $fechaJustificacion }}
 * Asignatura: {{ $asignatura }}
+* Seccion: {{ $seccionAlumno }}
 * Coordinador: {{ $nombreCoordinador }}
 * Resolución: {{ $resolucion }}
 

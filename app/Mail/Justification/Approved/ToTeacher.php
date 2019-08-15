@@ -45,6 +45,7 @@ class ToTeacher extends Mailable
                 'rutAlumno' => $this->alumno->RUT_ALU,
                 'nombreAlumno' => $this->alumno->NOMBRE_ALUM.' '.$this->alumno->APEP_ALUM,
                 'carreraAlumno' => $this->alumno->CARRERA,
+                'seccionAlumno' => $this->alumno->COD_SECCION,
                 'nombreCoordinador' => $this->alumno->NOMBRE_COR.' '.$this->alumno->APEP_COR,
             ]);
     }
