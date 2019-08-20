@@ -63,9 +63,10 @@ class JustificacionController extends Controller
             $justification->correo_cor = $curso['correoCoordinador'];
             $justification->correo_doc = $curso['correoDocente'];
             $justification->asignatura = $curso['asignatura'];
+            //$justification->asignatura = $curso['asignatura'].' '.$curso['seccion'].'|';
             $justification->comentario = $request['comentario'];
             $justification->motivo = $request['motivo'];
-            $justification->nombre_alum = $request['nombre_alum'].' '.$request['apep_alum'].' '.$request['apem_alum'];
+            $justification->nombre_alum = $request['nombre_alum'].' '.$request['apep_alum'].' '.$request['apem_alum'].' '.$curso['seccion'];
             $justification->correo_alum = $request['correo_alum'];
             $justification->celular_alum = $request['celular_alum'];
             $justification->fec_jus = $request['fechaJustificacion'];

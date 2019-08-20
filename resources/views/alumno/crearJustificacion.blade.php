@@ -51,6 +51,8 @@
                 <input type="hidden" id="cursosArray" name="cursosArray">
                 <input type="hidden" id="correoDocente" name="correoDocente">
                 <input type="hidden" id="correoCoordinador" name="correoCoordinador">
+ <!--               <input type="hidden" id="seccion" name="seccion"> -->
+                <input type="hidden" id="seccion" name="seccion"> 
                 <input type="hidden" id="subioArchivo" name="subioArchivo">
                 <input type="hidden" id="seleccionoFecha" name="seleccionoFecha">
                 <div id="wizard" class="form_wizard wizard_horizontal">
@@ -431,6 +433,7 @@
             success:function(data) {
               $('input[name=correoDocente]').val(data[0].CORREO_DOC);
               $('input[name=correoCoordinador]').val(data[0].CORREO_COR);
+              $('input[name=seccion]').val(data[0].COD_SECCION);
               $('input[name=nombreDocente]').val(data[0].NOMBRE_DOC + ' ' + data[0].APEP_DOC);
               $('input[name=nombreCoordinador]').val(data[0].NOMBRE_COR + ' ' + data[0].APEP_COR);
             },
@@ -449,7 +452,8 @@
             arr.push({
               asignatura: $('#carritoJC').find(":selected").text(),
               correoDocente: $('input[name=correoDocente]').val(),
-              correoCoordinador: $('input[name=correoCoordinador]').val()
+              correoCoordinador: $('input[name=correoCoordinador]').val(),
+              seccion: $('input[name=seccion]').val()
             });
             console.log(arr)
             display_asignaturas(arr);

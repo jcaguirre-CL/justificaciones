@@ -13,7 +13,6 @@ El alumno también fue informado de esta resolución.
 * Carrera: {{ $carreraAlumno }}
 * Fecha justificada: {{ $fechaJustificacion }}
 * Asignatura: {{ $asignatura }}
-* Seccion: {{ $seccionAlumno }}
 * Coordinador: {{ $nombreCoordinador }}
 * Resolución: {{ $resolucion }}
 
