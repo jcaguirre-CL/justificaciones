@@ -55,6 +55,11 @@
                   <button class="btn btn-primary btn-block">Acceder</button>
                   <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
                 </div>
+                <div>
+		  <img src="{{ asset('build/images/youtube.png') }}" class="img-responsive" alt="Video Tutorial" width="10%" >
+                  <a class="reset_pass" href="https://youtu.be/XwsMDZjcp6c">Revisa nuestro video tutorial</a>
+                </div>
+
                 <div class="clearfix"></div>
               </form>
               <div>
