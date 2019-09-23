@@ -53,14 +53,19 @@
                 </div>
                 <div>
                   <button class="btn btn-primary btn-block">Acceder</button>
-                  <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
                 </div>
-                <div>
-		  <img src="{{ asset('build/images/youtube.png') }}" class="img-responsive" alt="Video Tutorial" width="10%" >
-                  <a class="reset_pass" href="https://youtu.be/XwsMDZjcp6c">Revisa nuestro video tutorial</a>
-                </div>
+                <div class="row" >
+                  <div style="margin-top:10px; margin-left:130px; margin-bottom:-20px">
+                    <a href="https://youtu.be/XwsMDZjcp6c"><img src="{{ asset('build/images/youtube.png') }}" class="img-responsive" alt="Video Tutorial" title="Video Tutorial" width="20%" ></a>
 
-                <div class="clearfix"></div>
+                  </div>
+                  <div style="margin-right:45px">
+                      <a class="reset_pass" href="https://youtu.be/XwsMDZjcp6c">Revisa nuestro video tutorial</a>
+                  </div>
+                  <div style="margin-right:56px">
+                    <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
+                  </div>
+                </div>
               </form>
               <div>
                   <h6>Dudas a justificacionesavaras@gmail.com <span class="label label-default"></span></h6>
@@ -84,6 +89,8 @@
                   <button class="btn btn-primary btn-block">Recuperar</button>
                   <a class="reset_pass" href="#signin">Volver</a>
                 </div>
+
+
                 <div class="clearfix"></div>
               </form>
             </section>
