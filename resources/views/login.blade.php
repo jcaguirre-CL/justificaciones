@@ -55,11 +55,15 @@
                   <button class="btn btn-primary btn-block">Acceder</button>
                   <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
                 </div>
+                <div>
+                  <a class="reset_pass" href="https://youtu.be/XwsMDZjcp6c">Revisa nuestro video tutorial</a>
+                </div>
+
                 <div class="clearfix"></div>
               </form>
               <div>
                   <h6>Dudas a justificacionesavaras@gmail.com <span class="label label-default"></span></h6>
-                 </div>
+              </div>
             </section>
           </div>
         </div>
