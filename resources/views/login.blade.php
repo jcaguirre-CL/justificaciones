@@ -89,11 +89,6 @@
                   <button class="btn btn-primary btn-block">Recuperar</button>
                   <a class="reset_pass" href="#signin">Volver</a>
                 </div>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e629e2390a847121068d370394db8558080853ba
                 <div class="clearfix"></div>
               </form>
             </section>
