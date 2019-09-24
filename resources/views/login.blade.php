@@ -53,15 +53,6 @@
                 </div>
                 <div>
                   <button class="btn btn-primary btn-block">Acceder</button>
-<<<<<<< HEAD
-                  <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
-                </div>
-                <div>
-                  <a class="reset_pass" href="https://youtu.be/XwsMDZjcp6c">Revisa nuestro video tutorial</a>
-                </div>
-
-                <div class="clearfix"></div>
-=======
                 </div>
                 <div class="row" >
                   <div style="margin-top:10px; margin-left:130px; margin-bottom:-20px">
@@ -75,7 +66,6 @@
                     <a class="reset_pass" href="#signup">¿Perdiste tu contraseña?</a>
                   </div>
                 </div>
->>>>>>> e629e2390a847121068d370394db8558080853ba
               </form>
               <div>
                   <h6>Dudas a justificacionesavaras@gmail.com <span class="label label-default"></span></h6>
