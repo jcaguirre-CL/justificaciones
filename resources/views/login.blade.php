@@ -69,7 +69,7 @@
               </form>
               <div>
                   <h6>Dudas a justificacionesavaras@gmail.com <span class="label label-default"></span></h6>
-              </div>
+                 </div>
             </section>
           </div>
         </div>
@@ -89,6 +89,8 @@
                   <button class="btn btn-primary btn-block">Recuperar</button>
                   <a class="reset_pass" href="#signin">Volver</a>
                 </div>
+
+
                 <div class="clearfix"></div>
               </form>
             </section>

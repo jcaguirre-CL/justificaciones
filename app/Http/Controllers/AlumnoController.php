@@ -46,4 +46,9 @@ class AlumnoController extends Controller
             'cantValidando'  => $cantValidando
         ]);
     }
+
+    public function listarJustificaciones($value='')
+    {
+      // code...
+    }
 }
