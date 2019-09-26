@@ -46,6 +46,27 @@ class SuJustificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        $justifications = DB::table('justifications')->where('id_dato','like', $id)->first();
+        //dd($justifications);
+        $datosAlumno = DB::table('datos_semestre')->where([
+            ['correo_alum', 'like', $justifications->CORREO_ALUM],
+            ['nom_asig', 'like', $justifications->asignatura]
+        ])->first();
+
+        $imagenes = DB::table('documento')
+            ->select('url','nfolio')
+            ->where('nfolio','like', $justifications->NFOLIO)
+            ->get();
+         
+        return view('super/verJustificaciones', [
+            'justifications' => $justifications,
+            'datosAlumno' => $datosAlumno,
+            'imagenes' => $imagenes,
+            'folio' => $justifications->NFOLIO,
+        ]);
+    }
     public function edit($id)
     {
         $justifications = DB::table('justifications')->where('id_dato','like', $id)->first();
