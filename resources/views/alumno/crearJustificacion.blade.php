@@ -405,7 +405,7 @@
         dictInvalidFileType: "Solo archivos tipo Imagen",
         dictMaxFilesExceeded: "Lo sentimos, solo puedes subir un maximo de 3 archivos!",
         paramName: "file",
-        dictFileTooBig: "Archivo demasiado largo, tamaño maximo 2MB.",
+        dictFileTooBig: "Archivo demasiado largo, tamaño maximo 3MB.",
         acceptedFiles: "image/jpeg, image/png, image/jpg",
         params: {
           folio: $('#folio').val()
