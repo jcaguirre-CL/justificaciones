@@ -61,6 +61,7 @@
                         <th>Fecha Inicio Falta</th>
                         <th>Fecha Fin Falta</th>
                         <th>Estado</th>
+                        <th>#</th>
 
                       </tr>
                     </thead>
@@ -73,6 +74,8 @@
                           <td>{{ substr($obj->FEC_JUS,0, 10) }}</td>
                           <td>{{ substr($obj->FEC_JUS,12, 22) }}</td>
                           <td>{{ $obj->ESTADO }}</td>
+                          <td><a href="{{ url('alumno/ver', $obj->ID_DATO) }}">Ver</a></td>
+                          
                         </tr>
                       @endforeach
                     </tbody>
