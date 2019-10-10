@@ -49,10 +49,10 @@ class AlumnoController extends Controller
     public function show($id)
     {
         $justifications = DB::table('justifications')->where('id_dato','like', $id)->first();
-        
+
         $datosAlumno = DB::table('datos_semestre')->where([
             ['correo_alum', 'like', auth()->user()->email],
-            ['nom_asig', 'like', $justifications->asignatura]
+            ['nom_asig', 'like', $justifications->ASIGNATURA]
         ])->first();
 
         $imagenes = DB::table('documento')

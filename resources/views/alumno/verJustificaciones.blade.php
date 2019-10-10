@@ -30,7 +30,7 @@
           <div class="x_panel">
             <div class="x_content">
               <!-- Smart Wizard -->
-            
+
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" id="folio" name="folio" value="{{$folio}}">
                 <input type="hidden" id="inputSuccess3" name="apem_alum" value="{{$datosAlumno->APEM_ALUM}}">
@@ -38,7 +38,7 @@
                 <input type="hidden" id="correoDocente" name="correoDocente">
                 <input type="hidden" id="correoCoordinador" name="correoCoordinador">
                     <div>
-                      
+
                     </div>
                       <div class="form-horizontal form-label-left">
                         {{-- @foreach($datosAlumno as $key => $data) --}}
@@ -88,8 +88,8 @@
                         </div>
 
                       </div>
-                    
-                    
+
+
                       <h2 class="StepTitle">Datos Solicitud Alumno</h2><br>
                       <div class="col-md-12">
                         <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback" >
@@ -111,7 +111,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 f orm-group has-feedback">
                           <label for="nombreDocente" class="control-label">Asignatura:</label>
-                          <input type="text" class="form-control" id="inputSuccess6" readonly="readonly"  name="asignatura" placeholder="{{ $justifications->asignatura }}" value="{{ $justifications->asignatura }}">
+                          <input type="text" class="form-control" id="inputSuccess6" readonly="readonly"  name="asignatura" placeholder="{{ $justifications->ASIGNATURA }}" value="{{ $justifications->ASIGNATURA }}">
                           <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
@@ -122,7 +122,7 @@
                         <label for="nombreDocente" class="control-label">Comentarios Solicitud:</label>
                         <textarea cols="40" rows="5" id="message" required="required" class="form-control" readonly="readonly" placeholder="{{ $justifications->COMENTARIO }}" name="{{ $justifications->COMENTARIO }}"></textarea>
                       </div>
-                    
+
                       <h2 class="StepTitle">Certificado Alumno > (Click para abrir imagenes.)</h2>
                       <div class="container">
                             @foreach ($imagenes as $key => $imagen )
@@ -154,7 +154,7 @@
               <!-- End SmartWizard Content -->
             </div>
             <a href="{{ url('alumno/index')  }}" class="btn btn-default"> Volver </a>
-         
+
           </div>
         </div>
       </div>
@@ -171,7 +171,7 @@
   <!-- bootstrap-datetimepicker -->
   <script src="/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
-  
+
  <script>
     // CSRF for all ajax call
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') } });
