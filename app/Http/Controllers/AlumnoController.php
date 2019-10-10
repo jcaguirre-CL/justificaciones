@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Justification;
-
+use DB;
 class AlumnoController extends Controller
 {
     /**
@@ -44,6 +44,27 @@ class AlumnoController extends Controller
             'cantAprobadas'  => $cantAprobadas,
             'cantRechazadas' => $cantRechazadas,
             'cantValidando'  => $cantValidando
+        ]);
+    }
+    public function show($id)
+    {
+        $justifications = DB::table('justifications')->where('id_dato','like', $id)->first();
+        
+        $datosAlumno = DB::table('datos_semestre')->where([
+            ['correo_alum', 'like', auth()->user()->email],
+            ['nom_asig', 'like', $justifications->asignatura]
+        ])->first();
+
+        $imagenes = DB::table('documento')
+            ->select('url','nfolio')
+            ->where('nfolio','like', $justifications->NFOLIO)
+            ->get();
+        //dd($imagenes) ;
+        return view('alumno/verJustificaciones', [
+            'justifications' => $justifications,
+            'datosAlumno' => $datosAlumno,
+            'imagenes' => $imagenes,
+            'folio' => $justifications->NFOLIO,
         ]);
     }
 }

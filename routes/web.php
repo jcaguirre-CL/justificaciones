@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function(){
   Route::get('alumno/create', 'JustificacionController@create')->name('justificacion.create')->middleware('permission:justificacion.create');
   Route::get('alumno/cambiarContrasena', 'ContrasenaController@index')->name('contrasena.create')->middleware('auth:web');
   Route::post('alumno/contrasena/cambiar', 'ContrasenaController@cambiar')->name('contrasena.create')->middleware('auth:web');
+  Route::get('alumno/ver/{id}', 'AlumnoController@show')->name('justificacion.show')->middleware('auth:web');
+
 //   Route::get('/changePassword','HomeController@showChangePasswordForm');
 
   Route::put('justificaciones/{role}', 'JustificacionController@update')->name('justificacion.update')->middleware('permission:justificacion.edit');
@@ -71,8 +73,8 @@ Route::middleware(['auth'])->group(function(){
 
 
   // Route for super
-  Route::get('super/edicion/{id}', 'SuJustificacionController@edit')->name('justificacion.edit')->middleware('auth:web');
-  Route::post('super/update/{id}', 'SuJustificacionController@update')->name('justificacion.update')->middleware('auth:web');
+  //Route::get('super/edicion/{id}', 'SuJustificacionController@edit')->name('justificacion.edit')->middleware('auth:web');
+  Route::get('super/ver/{id}', 'SuJustificacionController@show')->name('justificacion.show')->middleware('auth:web');
 
 
 //  Route::post('coordinador/update', 'JustificacionController@udpdate')->name('justificacion.update');

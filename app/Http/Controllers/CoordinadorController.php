@@ -33,7 +33,8 @@ class CoordinadorController extends Controller
             ->select('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
             ->join('datos_semestre', 'justifications.correo_alum', 'datos_semestre.correo_alum')
             ->where([['justifications.correo_cor','like', auth()->user()->email],['estado', 'like', 'Pendiente']])
-            ->groupBy('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
+            //->groupBy('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
+            ->groupBy('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS','ESTADO')
             ->get();
 
         $listaJustificacionesAprobadas = DB::table('justifications')

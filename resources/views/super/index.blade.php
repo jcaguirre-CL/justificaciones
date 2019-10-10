@@ -56,7 +56,7 @@
                              <td>{{ $obj->FEC_SOL }}</td>
                              <td>{{ $obj->FEC_JUS}}</td>
                              <td>{{ $obj->ESTADO }}</td>
-                             <td><a href="{{ url('super/edicion', $obj->ID_DATO) }}">Ver</a></td>
+                             <td><a href="{{ url('super/ver', $obj->ID_DATO) }}">Ver</a></td>
                            </tr>
                        @endforeach
                        </tbody>
@@ -86,7 +86,7 @@
                              <td>{{ $obj->FEC_SOL }}</td>
                              <td>{{ $obj->FEC_JUS}}</td>
                              <td>{{ $obj->ESTADO }}</td>
-                             <td><a href="{{ url('super/edicion', $obj->ID_DATO) }}">Ver</a></td>
+                             <td><a href="{{ url('super/ver', $obj->ID_DATO) }}">Ver</a></td>
                            </tr>
                        @endforeach
                        </tbody>
@@ -116,7 +116,7 @@
                              <td>{{ $obj->FEC_SOL }}</td>
                              <td>{{ $obj->FEC_JUS}}</td>
                              <td>{{ $obj->ESTADO }}</td>
-                             <td><a href="{{ url('super/edicion', $obj->ID_DATO) }}">Ver</a></td>
+                             <td><a href="{{ url('super/ver', $obj->ID_DATO) }}">Ver</a></td>
                            </tr>
                        @endforeach
                        </tbody>
