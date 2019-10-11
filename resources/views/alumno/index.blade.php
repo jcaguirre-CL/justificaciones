@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-clock-o"></i> Total Pendientes</span>
-          <div class="count">{{ $cantValidando }}</div>
+          <div class="count">{{ $cantPendientes }}</div>
         </div>
         <div class="col-md-1 " style="padding-top:20px">
           <a href="{{ url('/alumno/nuevaJustificacion') }}"  class="btn btn-round btn-success">Crear Justificación</a>
@@ -57,25 +57,23 @@
                     <thead >
                       <tr>
                         <th>Fecha Solicitud</th>
-                        <th>Asignatura</th>
+                        <th>Motivo</th>
                         <th>Fecha Inicio Falta</th>
                         <th>Fecha Fin Falta</th>
                         <th>Estado</th>
                         <th>#</th>
-
                       </tr>
                     </thead>
                     <tbody>
                         {{-- {{ $justificacion }} --}}
                       @foreach ($justificacion as $obj)
                         <tr >
-                          <td>{{ $obj->FEC_SOL }}</td>
-                          <td>{{ $obj->ASIGNATURA }}</td>
+                          <td>{{ $obj->fec_sol }}</td>
+                          <td>{{ $obj->motivo }}</td>
                           <td>{{ substr($obj->FEC_JUS,0, 10) }}</td>
                           <td>{{ substr($obj->FEC_JUS,12, 22) }}</td>
                           <td>{{ $obj->ESTADO }}</td>
-                          <td><a href="{{ url('alumno/ver', $obj->ID_DATO) }}">Ver</a></td>
-                          
+                          <td><a href="{{ url('alumno/ver', $obj->nfolio) }}">Ver</a></td>
                         </tr>
                       @endforeach
                     </tbody>

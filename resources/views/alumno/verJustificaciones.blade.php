@@ -52,7 +52,7 @@
                         {{-- {{ print_r($datosAlumno, true) }} --}}
                         {{-- {{ print_r($infoCursos, true) }} --}}
                         {{-- {{$datosAlumno->'correo_alum'}} --}}
-                        <h2 class="StepTitle">Datos Academicos Alumno</h2>
+                        <h2 class="StepTitle">Datos Academicos Alumno</h2><br>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                           <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly" name='nombre_alum' placeholder="{{$datosAlumno->NOMBRE_ALUM}}" value="{{$datosAlumno->NOMBRE_ALUM}}">
                           <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
@@ -86,7 +86,6 @@
                           <input type="text" class="form-control" id="inputSuccess8" readonly="readonly" name="jornada" placeholder="{{$datosAlumno->JORNADA}}">
                           <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
                         </div>
-
                       </div>
 
 
@@ -111,7 +110,13 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 f orm-group has-feedback">
                           <label for="nombreDocente" class="control-label">Asignatura:</label>
-                          <input type="text" class="form-control" id="inputSuccess6" readonly="readonly"  name="asignatura" placeholder="{{ $justifications->ASIGNATURA }}" value="{{ $justifications->ASIGNATURA }}">
+                          <table>
+                            @foreach ($listaAsignaturasJustificadas as $obj)
+                              <tr>
+                                <td>{{ $obj->ASIGNATURA }}</td>
+                              </tr>
+                            @endforeach
+                          </table>
                           <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
@@ -123,7 +128,7 @@
                         <textarea cols="40" rows="5" id="message" required="required" class="form-control" readonly="readonly" placeholder="{{ $justifications->COMENTARIO }}" name="{{ $justifications->COMENTARIO }}"></textarea>
                       </div>
 
-                      <h2 class="StepTitle">Certificado Alumno > (Click para abrir imagenes.)</h2>
+                      <h2 class="StepTitle">Certificado Alumno (Click para ver)</h2>
                       <div class="container">
                             @foreach ($imagenes as $key => $imagen )
                                 <div class="list-group">

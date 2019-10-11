@@ -30,12 +30,11 @@ class AlumnoController extends Controller
         if (!json_decode($verificar, true)[0]['activacion']) {
             return view('contrasena.cambiar', []);
         }
-
-        $justificacion  = Justification::where([['correo_alum','like', auth()->user()->email]])->get();
-        $cantEmitidas   = Justification::where('correo_alum','like', auth()->user()->email)->count();
-        $cantAprobadas  = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Aprobado' ]])->count();
-        $cantRechazadas = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Rechazado']])->count();
-        $cantValidando  = Justification::where([['correo_alum','like', auth()->user()->email],['estado', 'like', 'Pendiente' ]])->count();
+        $justificacion  = self::listarJustificacionesPorEstado('');
+        $cantAprobadas  = self::contarJustificaciones('Aprobado');
+        $cantRechazadas = self::contarJustificaciones('Rechazado');
+        $cantPendientes = self::contarJustificaciones('Pendiente');
+        $cantEmitidas   = self::contarJustificaciones('');
         logger($justificacion);
 
         return view('alumno.index', [
@@ -43,28 +42,62 @@ class AlumnoController extends Controller
             'cantEmitidas'   => $cantEmitidas,
             'cantAprobadas'  => $cantAprobadas,
             'cantRechazadas' => $cantRechazadas,
-            'cantValidando'  => $cantValidando
+            'cantPendientes' => $cantPendientes
         ]);
     }
+
     public function show($id)
     {
-        $justifications = DB::table('justifications')->where('id_dato','like', $id)->first();
+
+        // Datos de la justificacion
+         $datosJustificacion = DB::table('justifications')
+          ->where('nfolio', 'like', $id)
+          ->first();
+
+         $listaAsignaturasJustificadas = DB::table('justifications')
+          ->select('ASIGNATURA')
+          ->where('nfolio', 'like', $id)
+          ->groupby('ASIGNATURA')
+          ->get();
+
+
+        // Datos del semestre del alumno
 
         $datosAlumno = DB::table('datos_semestre')->where([
-            ['correo_alum', 'like', auth()->user()->email],
-            ['nom_asig', 'like', $justifications->ASIGNATURA]
-        ])->first();
+          ['correo_alum', 'like', auth()->user()->email]
+          ])->first();
 
         $imagenes = DB::table('documento')
             ->select('url','nfolio')
-            ->where('nfolio','like', $justifications->NFOLIO)
+            ->where('nfolio','like', $id)
             ->get();
         //dd($imagenes) ;
         return view('alumno/verJustificaciones', [
-            'justifications' => $justifications,
+            'justifications' => $datosJustificacion,
+            'listaAsignaturasJustificadas' => $listaAsignaturasJustificadas,
             'datosAlumno' => $datosAlumno,
             'imagenes' => $imagenes,
-            'folio' => $justifications->NFOLIO,
+            'folio' => $id,
         ]);
+    }
+
+    public function listarJustificacionesPorEstado($estado){
+      return DB::table('justifications')
+      ->select('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y") as fec_sol'),'motivo', 'ESTADO', 'FEC_JUS')
+      ->where([['correo_alum','like', auth()->user()->email],['estado', 'like', '%'.$estado.'%']])
+      ->groupby('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y")'),'motivo', 'ESTADO', 'FEC_JUS')
+      ->orderby('fec_sol', 'desc')
+      ->get();
+    }
+
+    public function contarJustificaciones($estado){
+        $sub = DB::table('justifications')
+                    ->select('nfolio')
+                    ->where([['correo_alum','like', auth()->user()->email],['estado', 'like', '%'.$estado.'%']])
+                    ->groupby('nfolio');
+        return DB::table( DB::raw("({$sub->toSql()}) as sub") )
+        ->mergeBindings($sub)
+        ->count();
+
     }
 }
