@@ -58,8 +58,8 @@
                       <tr>
                         <th>Fecha Solicitud</th>
                         <th>Motivo</th>
-                        <th>Fecha Inicio Falta</th>
-                        <th>Fecha Fin Falta</th>
+                        <th>Fecha Inicio Ausencia</th>
+                        <th>Fecha Fin Ausencia</th>
                         <th>Estado</th>
                         <th>#</th>
                       </tr>
