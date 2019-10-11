@@ -58,6 +58,11 @@ class JustificacionController extends Controller
      */
     public function store(ContactFormRequest $request)
     {
+        //actualizar numero de telefono alumno
+        DB::table('alumno')
+        ->where('correo_alum', auth()->user()->email )
+        ->update(['celular' =>  $request['celular_alum']]);
+         //guardar justificacion   
         foreach (json_decode($request->cursosArray, true) as $curso) {
             $justification = new Justification();
             $justification->correo_cor = $curso['correoCoordinador'];
@@ -119,23 +124,40 @@ class JustificacionController extends Controller
      */
     public function edit($id)
     {
-        $justifications = DB::table('justifications')->where('id_dato','like', $id)->first();
+        // Datos de la justificacion
+        $justifications = DB::table('justifications')
+        ->where('nfolio', 'like', $id)
+        ->first();
 
+        //datos semestre alumno
         $datosAlumno = DB::table('datos_semestre')->where([
-            ['correo_alum', 'like', $justifications->CORREO_ALUM],
-            ['nom_asig', 'like', $justifications->ASIGNATURA]
+            ['correo_alum', 'like', $justifications->CORREO_ALUM]
         ])->first();
+
+        //asignaturas justificadas 
+        $listaAsignaturasJustificadas = DB::table('justifications')
+        ->select('ASIGNATURA')
+        ->where('nfolio', 'like', $id)
+        ->groupby('ASIGNATURA')
+        ->get();
 
         $imagenes = DB::table('documento')
             ->select('url','nfolio','url')
-            ->where('nfolio','like', $justifications->NFOLIO)
+            ->where('nfolio','like',$id)
             ->get();
+        //rut y telefono alumno
+        $alumno = DB::table('alumno')
+            ->select('celular','rut_alu')
+            ->where('correo_alum', 'like', $justifications->CORREO_ALUM)
+            ->first();
 
         return view('coordinador/edicionJustificaciones', [
             'justifications' => $justifications,
+            'listaAsignaturasJustificadas'=>$listaAsignaturasJustificadas,
             'datosAlumno' => $datosAlumno,
             'imagenes' => $imagenes,
             'folio' => $justifications->NFOLIO,
+            'alumno' => $alumno
         ]);
     }
 

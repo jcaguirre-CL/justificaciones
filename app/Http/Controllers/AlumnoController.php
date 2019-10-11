@@ -36,7 +36,7 @@ class AlumnoController extends Controller
         $cantPendientes = self::contarJustificaciones('Pendiente');
         $cantEmitidas   = self::contarJustificaciones('');
         logger($justificacion);
-
+        //preguntar a ale que es logger
         return view('alumno.index', [
             'justificacion'  => $justificacion,
             'cantEmitidas'   => $cantEmitidas,

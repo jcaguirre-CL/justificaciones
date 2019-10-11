@@ -55,14 +55,14 @@
                         {{-- {{ print_r($infoCursos, true) }} --}}
                         {{-- {{$datosAlumno->'correo_alum'}} --}}
                         <h2 class="StepTitle">Datos Academicos Alumno</h2>
+                        
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly" name='nombre_alum' placeholder="{{$datosAlumno->NOMBRE_ALUM}}" value="{{$datosAlumno->NOMBRE_ALUM}}">
+                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly" name='nombre_alum' placeholder="{{$datosAlumno->NOMBRE_ALUM}} {{$datosAlumno->APEP_ALUM}}" value="{{$datosAlumno->NOMBRE_ALUM}} {{$datosAlumno->APEP_ALUM}}">
                           <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                         </div>
-
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                          <input type="text" class="form-control" id="inputSuccess3" readonly="readonly" name='apep_alum' placeholder="{{$datosAlumno->APEP_ALUM}}" value="{{$datosAlumno->APEP_ALUM}}">
-                          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly" name='rut_alum' placeholder="Rut: {{$alumno->rut_alu}}" value="Rut: {{$alumno->rut_alu}}">
+                          <span class="fa	fa-indent form-control-feedback left" aria-hidden="true"></span>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                          <input type="text" class="form-control" id="inputSuccess7" readonly="readonly" placeholder="{{$datosAlumno->CELULAR}}">
+                          <input type="text" class="form-control" id="inputSuccess7" readonly="readonly" placeholder="{{$alumno->celular}}">
                           <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                         </div>
                         <!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -94,22 +94,23 @@
                     
                       <h2 class="StepTitle">Datos Solicitud Alumno</h2><br>
                       <div class="col-md-12">
+                       <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback" >
+                          <label for="fechaFalta" class="control-label">Fecha solicitud:</label>
+                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly"  name="fec_sol" placeholder="{{ $justifications->FEC_SOL }}" name="{{ $justifications->FEC_SOL }}">
+                          <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                        </div>
                         <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback" >
-                          <label for="fechaFalta" class="control-label">Fechas Falta:</label>
+                          <label for="fechaFalta" class="control-label">Fechas A justificar:</label>
                           <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly"  name="fec_jus" placeholder="{{ $justifications->FEC_JUS }}" name="{{ $justifications->FEC_JUS }}">
                           <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
                         </div>
                       </div>
                       <div class="col-md-12">
-                        <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback">
-                          <label for="nombreDocente" class="control-label">Docente:</label>
-                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly"  name="nombre_doc" placeholder="{{$datosAlumno->NOMBRE_DOC}}" name="{{$datosAlumno->NOMBRE_DOC}}">
-                          <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 f orm-group has-feedback">
-                          <label for="nombreDocente" class="control-label">Asignatura:</label>
-                          <input type="text" class="form-control" id="inputSuccess6" readonly="readonly"  name="asignatura" placeholder="{{ $justifications->ASIGNATURA }}" value="{{ $justifications->ASIGNATURA }}">
-                          <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
+                      <label for="nombreDocente" class="control-label">Asignatura(s) a justificar:</label>
+                        <div class="col-md-12 col-sm-12 col-xs-12 f orm-group has-feedback">
+                            @foreach ($listaAsignaturasJustificadas as $obj)
+                            <span class="btn btn-primary">{{ $obj->ASIGNATURA }}</span>
+                            @endforeach
                         </div>
                       </div>
 
@@ -158,7 +159,7 @@
 
                       <br>
                       <label for="message">Ingrese máximo 1000 caracteres:</label>
-                      <textarea cols="40" rows="5" id="message" required="required" class="form-control" name="comentarioRechazo"></textarea>
+                      <textarea cols="40" rows="5" id="message" required="required" class="form-control" name="comentarioRechazo" >{{ $justifications->COMENTARIO_REC }}</textarea>
                     <br>
                  <button  type="submit" id="submit" class="buttonFinish btn btn-default" style="display: inline;">Finalizar</button>
                 </div>
