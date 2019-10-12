@@ -45,6 +45,10 @@ class AlumnoController extends Controller
             'cantPendientes' => $cantPendientes
         ]);
     }
+    // Redirije al registro de justificaciones del alumno
+    public function revisar(){
+      return view('alumno.revisarJustificacion', ['justificacion'  => self::listarJustificacionesPorEstado('')]);
+    }
 
     public function show($id)
     {
@@ -98,6 +102,7 @@ class AlumnoController extends Controller
         return DB::table( DB::raw("({$sub->toSql()}) as sub") )
         ->mergeBindings($sub)
         ->count();
-
     }
+
+
 }
