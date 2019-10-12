@@ -36,27 +36,25 @@
                      <table id="" class="display table table-striped table-bordered">
                        <thead>
                          <tr>
-                           <th>Nro. Folio</th>
-                           <th>Nombre Alumno</th>
-                           <th>Rut Alumno</th>
-                           <th>Asignatura</th>
-                           <th>Fecha Solicitud</th>
-                           <th>Fecha Justificacion</th>
-                           <th>Estado</th>
-                           <th>#</th>
+                         <th>N° Folio</th>
+                         <th>Alumno</th>
+                         <th>Fecha Solicitud</th>
+                        <th>Motivo</th>
+                        <th>Fechas justificacion</th>
+                        <th>Estado</th>
+                        <th>#</th>
                          </tr>
                        </thead>
                        <tbody>
                          @foreach ($listaJustificacionesValidando as $obj)
                            <tr>
-                             <td>{{ $obj->NFOLIO }}</td>
-                             <td>{{ $obj->NOMBRE_ALUM }}</td>
-                             <td>{{ $obj->RUT_ALU }}</td>
-                             <td>{{ $obj->ASIGNATURA }}</td>
-                             <td>{{ $obj->FEC_SOL }}</td>
-                             <td>{{ $obj->FEC_JUS}}</td>
-                             <td>{{ $obj->ESTADO }}</td>
-                             <td><a href="{{ url('coordinador/edicion', $obj->ID_DATO) }}">Ver</a></td>
+                           <td>{{ $obj->nfolio }}</td> 
+                           <td>{{ $obj->NOMBRE_ALUM }}</td>
+                          <td>{{ $obj->fec_sol }}</td>
+                          <td>{{ $obj->motivo }}</td>
+                          <td>{{ substr($obj->FEC_JUS,0, 10) }} a {{ substr($obj->FEC_JUS,12, 22) }}</td>
+                          <td>{{ $obj->ESTADO }}</td>
+                          <td><a href="{{ url('coordinador/edicion', $obj->nfolio) }}">Responder</a></td>
                            </tr>
                        @endforeach
                        </tbody>
@@ -66,27 +64,25 @@
                      <table id="" class="display table table-striped table-bordered">
                        <thead>
                          <tr>
-                           <th>Nro. Folio</th>
-                           <th>Nombre Alumno</th>
-                           <th>Rut Alumno</th>
-                           <th>Asignatura</th>
-                           <th>Fecha Solicitud</th>
-                           <th>Fecha Justificacion</th>
-                           <th>Estado</th>
-                           <th>#</th>
+                         <th>N° Folio</th>
+                         <th>Alumno</th>
+                         <th>Fecha Solicitud</th>
+                        <th>Motivo</th>
+                        <th>Fechas justificacion</th>
+                        <th>Estado</th>
+                        <th>#</th>
                          </tr>
                        </thead>
                        <tbody>
                          @foreach ($listaJustificacionesAprobadas as $obj)
                            <tr>
-                             <td>{{ $obj->NFOLIO }}</td>
-                             <td>{{ $obj->NOMBRE_ALUM }}</td>
-                             <td>{{ $obj->RUT_ALU }}</td>
-                             <td>{{ $obj->ASIGNATURA }}</td>
-                             <td>{{ $obj->FEC_SOL }}</td>
-                             <td>{{ $obj->FEC_JUS}}</td>
-                             <td>{{ $obj->ESTADO }}</td>
-                             <td><a href="{{ url('coordinador/edicion', $obj->ID_DATO) }}">Ver</a></td>
+                           <td>{{ $obj->nfolio }}</td> 
+                           <td>{{ $obj->NOMBRE_ALUM }}</td>
+                          <td>{{ $obj->fec_sol }}</td>
+                          <td>{{ $obj->motivo }}</td>
+                          <td>{{ substr($obj->FEC_JUS,0, 10) }} a {{ substr($obj->FEC_JUS,12, 22) }}</td>
+                          <td>{{ $obj->ESTADO }}</td>
+                          <td><a href="{{ url('coordinador/edicion', $obj->nfolio) }}">Editar</a></td>
                            </tr>
                        @endforeach
                        </tbody>
@@ -96,27 +92,25 @@
                      <table id="" class="display table table-striped table-bordered">
                        <thead>
                          <tr>
-                           <th>Nro. Folio</th>
-                           <th>Nombre Alumno</th>
-                           <th>Rut Alumno</th>
-                           <th>Asignatura</th>
-                           <th>Fecha Solicitud</th>
-                           <th>Fecha Justificacion</th>
-                           <th>Estado</th>
-                           <th>#</th>
+                         <th>N° Folio</th>
+                         <th>Alumno</th>
+                         <th>Fecha Solicitud</th>
+                        <th>Motivo</th>
+                        <th>Fechas justificacion</th>
+                        <th>Estado</th>
+                        <th>#</th>
                          </tr>
                        </thead>
                        <tbody>
                          @foreach ($listaJustificacionesRechazadas as $obj)
                            <tr>
-                             <td>{{ $obj->NFOLIO }}</td>
-                             <td>{{ $obj->NOMBRE_ALUM }}</td>
-                             <td>{{ $obj->RUT_ALU }}</td>
-                             <td>{{ $obj->ASIGNATURA }}</td>
-                             <td>{{ $obj->FEC_SOL }}</td>
-                             <td>{{ $obj->FEC_JUS}}</td>
-                             <td>{{ $obj->ESTADO }}</td>
-                             <td><a href="{{ url('coordinador/edicion', $obj->ID_DATO) }}">Ver</a></td>
+                           <td>{{ $obj->nfolio }}</td> 
+                           <td>{{ $obj->NOMBRE_ALUM }}</td>
+                          <td>{{ $obj->fec_sol }}</td>
+                          <td>{{ $obj->motivo }}</td>
+                          <td>{{ substr($obj->FEC_JUS,0, 10) }} a {{ substr($obj->FEC_JUS,12, 22) }}</td>
+                          <td>{{ $obj->ESTADO }}</td>
+                          <td><a href="{{ url('coordinador/edicion', $obj->nfolio) }}">Editar</a></td>
                            </tr>
                        @endforeach
                        </tbody>
