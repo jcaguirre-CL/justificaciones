@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\User;
-use App\Justification;
+use Illuminate\Http\Request;
+use App\Traits\Justificaciones;
 use DB;
+
 class AlumnoController extends Controller
 {
+    use Justificaciones;
     /**
      * Create a new controller instance.
      *
@@ -30,11 +31,11 @@ class AlumnoController extends Controller
         if (!json_decode($verificar, true)[0]['activacion']) {
             return view('contrasena.cambiar', []);
         }
-        $justificacion  = self::listarJustificacionesPorEstado('');
-        $cantAprobadas  = self::contarJustificaciones('Aprobado');
-        $cantRechazadas = self::contarJustificaciones('Rechazado');
-        $cantPendientes = self::contarJustificaciones('Pendiente');
-        $cantEmitidas   = self::contarJustificaciones('');
+        $justificacion  = $this->listarJustificacionesPorEstado('');
+        $cantAprobadas  = $this->contarJustificaciones('Aprobado');
+        $cantRechazadas = $this->contarJustificaciones('Rechazado');
+        $cantPendientes = $this->contarJustificaciones('Pendiente');
+        $cantEmitidas   = $this->contarJustificaciones('');
         logger($justificacion);
         //preguntar a ale que es logger
         return view('alumno.index', [
@@ -47,12 +48,12 @@ class AlumnoController extends Controller
     }
     // Redirije al registro de justificaciones del alumno
     public function revisar(){
-      return view('alumno.revisarJustificacion', ['justificacion'  => self::listarJustificacionesPorEstado('')]);
+      return view('alumno.revisarJustificacion',
+      ['justificacion'  => $this->listarJustificacionesPorEstado('')]);
     }
 
     public function show($id)
     {
-
         // Datos de la justificacion
          $datosJustificacion = DB::table('justifications')
           ->where('nfolio', 'like', $id)
@@ -66,7 +67,6 @@ class AlumnoController extends Controller
 
 
         // Datos del semestre del alumno
-
         $datosAlumno = DB::table('datos_semestre')->where([
           ['correo_alum', 'like', auth()->user()->email]
           ])->first();
@@ -84,25 +84,4 @@ class AlumnoController extends Controller
             'folio' => $id,
         ]);
     }
-
-    public function listarJustificacionesPorEstado($estado){
-      return DB::table('justifications')
-      ->select('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y") as fec_sol'),'motivo', 'ESTADO', 'FEC_JUS')
-      ->where([['correo_alum','like', auth()->user()->email],['estado', 'like', '%'.$estado.'%']])
-      ->groupby('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y")'),'motivo', 'ESTADO', 'FEC_JUS')
-      ->orderby('fec_sol', 'desc')
-      ->get();
-    }
-
-    public function contarJustificaciones($estado){
-        $sub = DB::table('justifications')
-                    ->select('nfolio')
-                    ->where([['correo_alum','like', auth()->user()->email],['estado', 'like', '%'.$estado.'%']])
-                    ->groupby('nfolio');
-        return DB::table( DB::raw("({$sub->toSql()}) as sub") )
-        ->mergeBindings($sub)
-        ->count();
-    }
-
-
 }

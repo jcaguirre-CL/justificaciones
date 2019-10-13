@@ -9,19 +9,19 @@
       <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-edit"></i> Total Emitidas</span>
-          <div class="count">{{ $justificationsDataSummary->Total }}</div>
+          <div class="count">{{ $cantEmitidas }}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-check-circle-o  "></i> Total Aprobadas</span>
-          <div class="count">{{ $justificationsDataSummary->Aprobadas }}</div>
+          <div class="count">{{ $cantAprobadas }}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-times-circle-o"></i> Total Rechazadas</span>
-          <div class="count">{{ $justificationsDataSummary->Rechazadas }}</div>
+          <div class="count">{{ $cantRechazadas }}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
           <span class="count_top"><i class="fa fa-clock-o"></i> Total Pendientes</span>
-          <div class="count">{{ $justificationsDataSummary->Pendientes }}</div>
+          <div class="count">{{ $cantPendientes }}</div>
         </div>
       </div>
     </div>
