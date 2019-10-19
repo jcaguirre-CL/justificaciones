@@ -59,7 +59,7 @@ class JustificacionController extends Controller
     public function store(ContactFormRequest $request)
     {
         //actualizar numero de telefono alumno
-        DB::table('alumno')
+        DB::table('datos_semestre')
         ->where('correo_alum', auth()->user()->email )
         ->update(['celular' =>  $request['celular_alum']]);
          //guardar justificacion   
@@ -146,11 +146,10 @@ class JustificacionController extends Controller
             ->where('nfolio','like',$id)
             ->get();
         //rut y telefono alumno
-        $alumno = DB::table('alumno')
+        $alumno = DB::table('datos_semestre')
             ->select('celular','rut_alu')
             ->where('correo_alum', 'like', $justifications->CORREO_ALUM)
             ->first();
-
         return view('coordinador/edicionJustificaciones', [
             'justifications' => $justifications,
             'listaAsignaturasJustificadas'=>$listaAsignaturasJustificadas,
