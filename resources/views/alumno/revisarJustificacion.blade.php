@@ -31,20 +31,22 @@
                     <thead>
                       <tr>
                         <th>Fecha Solicitud</th>
-                        <th>Asignatura</th>
-                        <th>Fecha Inicio Falta</th>
-                        <th>Fecha Fin Falta</th>
+                        <th>Motivo</th>
+                        <th>Fecha Inicio Ausencia</th>
+                        <th>Fecha Fin Ausencia</th>
                         <th>Estado</th>
+                        <th>#</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($justificacion as $obj)
                         <tr>
-                                <td>{{ $obj->FEC_SOL }}</td>
-                                <td>{{ $obj->ASIGNATURA }}</td>
-                                <td>{{ substr($obj->FEC_JUS,0, 10) }}</td>
-                                <td>{{ substr($obj->FEC_JUS,12, 22) }}</td>
-                                <td>{{ $obj->ESTADO }}</td>
+                          <td>{{ $obj->fec_sol }}</td>
+                          <td>{{ $obj->motivo }}</td>
+                          <td>{{ substr($obj->FEC_JUS,0, 10) }}</td>
+                          <td>{{ substr($obj->FEC_JUS,12, 22) }}</td>
+                          <td>{{ $obj->ESTADO }}</td>
+                          <td><a href="{{ url('alumno/ver', $obj->nfolio) }}">Ver</a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -210,7 +210,7 @@
                         </div>
                         <div class="checkbox form-group">
                           <label>
-                            <input name="tipoInasistencia" type="radio" name="opcion" value="NO" id="noprueba" class="validarStep"> NO
+                            <input name="tipoInasistencia" type="radio" name="opcion" value="NO" id="noprueba" class="validarStep" checked> NO
                           </label>
                         </div>
                       </div>

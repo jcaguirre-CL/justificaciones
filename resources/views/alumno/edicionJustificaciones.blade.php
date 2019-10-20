@@ -100,12 +100,6 @@
                           <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback">
-                          <label for="nombreDocente" class="control-label">Docente:</label>
-                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly"  name="nombre_doc" placeholder="{{$datosAlumno->NOMBRE_DOC}}" name="{{$datosAlumno->NOMBRE_DOC}}">
-                          <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                        </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 f orm-group has-feedback">
                           <label for="nombreDocente" class="control-label">Asignatura:</label>
                           <input type="text" class="form-control" id="inputSuccess6" readonly="readonly"  name="asignatura" placeholder="{{ $justifications->ASIGNATURA }}" value="{{ $justifications->ASIGNATURA }}">

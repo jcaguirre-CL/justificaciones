@@ -102,26 +102,15 @@
                           <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
+
                       <div class="col-md-12">
-                        <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback">
-                          <label for="nombreDocente" class="control-label">Docente:</label>
-                          <input type="text" class="form-control has-feedback-left" id="inputSuccess2" readonly="readonly"  name="nombre_doc" placeholder="{{$datosAlumno->NOMBRE_DOC}} {{$datosAlumno->APEP_DOC}}" name="{{$datosAlumno->NOMBRE_DOC}}">
-                          <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 f orm-group has-feedback">
-                          <label for="nombreDocente" class="control-label">Asignatura:</label>
-                          <table>
+                      <label for="nombreDocente" class="control-label">Asignatura(s) a justificar:</label>
+                        <div class="col-md-12 col-sm-12 col-xs-12 f orm-group has-feedback">
                             @foreach ($listaAsignaturasJustificadas as $obj)
-                              <tr>
-                                <td>{{ $obj->ASIGNATURA }}</td>
-                              </tr>
+                            <span class="btn btn-primary" >{{ $obj->ASIGNATURA }}</span>
                             @endforeach
-                          </table>
-                          <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
-
-
 
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label for="nombreDocente" class="control-label">Comentarios Solicitud:</label>
