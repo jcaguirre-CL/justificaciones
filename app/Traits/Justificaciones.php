@@ -6,12 +6,13 @@ use DB;
 trait Justificaciones
 {
 
-  public function contarJustificaciones($estado){
 
-      $userEmail = (auth()->user()->rol == 0)?auth()->user()->email:'%%';
+  public function contarJustificaciones($estado){
+      $userEmail = (auth()->user()->rol == 2)?'%%':auth()->user()->email;
+      $userType  = (auth()->user()->rol == 1)?'correo_cor':'correo_alum';
       $sub = DB::table('justifications')
                   ->select('nfolio')
-                  ->where([['correo_alum','like',$userEmail],
+                  ->where([[$userType,'like',$userEmail],
                            ['estado', 'like', '%'.$estado.'%'],
                            ['correo_cor','not like', '']])
                   ->groupby('nfolio');
@@ -21,12 +22,13 @@ trait Justificaciones
   }
 
   public function listarJustificacionesPorEstado($estado){
+    $userType  = (auth()->user()->rol == 1)?'correo_cor':'correo_alum';
     return DB::table('justifications')
-    ->select('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y") as fec_sol'),'motivo', 'ESTADO', 'FEC_JUS', 'CORREO_COR')
-    ->where([['correo_alum','like', auth()->user()->email],
+    ->select('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y") as fec_sol'),'motivo', 'rut_alu','ESTADO', 'FEC_JUS', 'CORREO_COR')
+    ->where([[$userType,'like', auth()->user()->email],
              ['estado', 'like', '%'.$estado.'%'],
              ['correo_cor','!=', ' ']])
-    ->groupby('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y")'),'motivo', 'ESTADO', 'FEC_JUS', 'CORREO_COR')
+    ->groupby('nfolio',DB::raw('DATE_FORMAT(fec_sol,"%d-%m-%Y")'),'motivo', 'rut_alu','ESTADO', 'FEC_JUS', 'CORREO_COR')
     ->orderby('fec_sol', 'desc')
     ->get();
   }

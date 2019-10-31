@@ -62,7 +62,7 @@ class JustificacionController extends Controller
         DB::table('alumno')
         ->where('correo_alum', auth()->user()->email )
         ->update(['celular' =>  $request['celular_alum']]);
-         //guardar justificacion   
+         //guardar justificacion
         foreach (json_decode($request->cursosArray, true) as $curso) {
             $justification = new Justification();
             $justification->correo_cor = $curso['correoCoordinador'];
@@ -72,6 +72,7 @@ class JustificacionController extends Controller
             $justification->comentario = $request['comentario'];
             $justification->motivo = $request['motivo'];
             $justification->nombre_alum = $request['nombre_alum'].' '.$request['apep_alum'].' '.$request['apem_alum'];
+            $justification->rut_alu = $request['rut_alu'];
             //$justification->nombre_alum = $request['nombre_alum'].' '.$request['apep_alum'].' '.$request['apem_alum'].' '.$curso['seccion'];
             $justification->correo_alum = $request['correo_alum'];
             $justification->celular_alum = $request['celular_alum'];
@@ -134,7 +135,7 @@ class JustificacionController extends Controller
             ['correo_alum', 'like', $justifications->CORREO_ALUM]
         ])->first();
 
-        //asignaturas justificadas 
+        //asignaturas justificadas
         $listaAsignaturasJustificadas = DB::table('justifications')
         ->select('ASIGNATURA')
         ->where('nfolio', 'like', $id)
