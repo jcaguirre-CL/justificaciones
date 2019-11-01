@@ -51,7 +51,7 @@
                            <tr>
                               <td>{{ $obj->nfolio }}</td>
                               <td>{{ $obj->NOMBRE_ALUM }}</td>
-                              <td>{{ $obj->rut_alu }}</td>
+                              <td>{{ $obj->RUT_ALU }}</td>
                               <td>{{ $obj->fec_sol }}</td>
                               <td>{{ $obj->motivo }}</td>
                               <td>{{ substr($obj->FEC_JUS,0, 10) }} a {{ substr($obj->FEC_JUS,12, 22) }}</td>
@@ -81,7 +81,7 @@
                            <tr>
                            <td>{{ $obj->nfolio }}</td>
                            <td>{{ $obj->NOMBRE_ALUM }}</td>
-                           <td>{{ $obj->rut_alu }}</td>
+                           <td>{{ $obj->RUT_ALU  }}</td>
                            <td>{{ $obj->fec_sol }}</td>
                            <td>{{ $obj->motivo }}</td>
                            <td>{{ substr($obj->FEC_JUS,0, 10) }} a {{ substr($obj->FEC_JUS,12, 22) }}</td>
@@ -111,7 +111,7 @@
                            <tr>
                            <td>{{ $obj->nfolio }}</td>
                            <td>{{ $obj->NOMBRE_ALUM }}</td>
-                           <td>{{ $obj->rut_alu }}</td>
+                           <td>{{ $obj->RUT_ALU  }}</td>
                            <td>{{ $obj->fec_sol }}</td>
                            <td>{{ $obj->motivo }}</td>
                            <td>{{ substr($obj->FEC_JUS,0, 10) }} a {{ substr($obj->FEC_JUS,12, 22) }}</td>
