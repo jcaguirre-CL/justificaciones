@@ -59,12 +59,19 @@ class AlumnoController extends Controller
           ->where('nfolio', 'like', $id)
           ->first();
 
-         $listaAsignaturasJustificadas = DB::table('justifications')
+         /*$listaAsignaturasJustificadas = DB::table('justifications')
           ->select('ASIGNATURA')
           ->where('nfolio', 'like', $id)
           ->groupby('ASIGNATURA')
           ->get();
+          */
 
+          $listaAsignaturasJustificadas = DB::table('justifications')
+           ->select('nfolio','justifications.ASIGNATURA','datos_semestre.NOMBRE_DOC', 'datos_semestre.APEP_DOC')
+           ->join('datos_semestre', 'justifications.CORREO_DOC', 'datos_semestre.CORREO_DOC')
+           ->where([['justifications.nfolio', 'like', $id]])
+           ->groupBy('nfolio', 'justifications.ASIGNATURA', 'datos_semestre.NOMBRE_DOC', 'datos_semestre.APEP_DOC')
+           ->get();
 
         // Datos del semestre del alumno
         $datosAlumno = DB::table('datos_semestre')->where([
