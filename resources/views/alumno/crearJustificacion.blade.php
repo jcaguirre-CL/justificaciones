@@ -51,8 +51,9 @@
                 <input type="hidden" id="cursosArray" name="cursosArray">
                 <input type="hidden" id="correoDocente" name="correoDocente">
                 <input type="hidden" id="correoCoordinador" name="correoCoordinador">
+                <input type="hidden" id="rut_alu" name="rut_alu" value="{{$datosAlumno->RUT_ALU}}">
  <!--               <input type="hidden" id="seccion" name="seccion"> -->
-                <input type="hidden" id="seccion" name="seccion"> 
+                <input type="hidden" id="seccion" name="seccion">
                 <input type="hidden" id="subioArchivo" name="subioArchivo">
                 <input type="hidden" id="seleccionoFecha" name="seleccionoFecha">
                 <div id="wizard" class="form_wizard wizard_horizontal">
@@ -470,14 +471,14 @@
          posicion =-1;
            for (var i = 0; i < arr.length; i++) {
              if(arr[i].asignatura ==nombre)
-              { 
-               posicion=i;      
+              {
+               posicion=i;
               }
            }
            var opt = document.createElement('option');
            opt.value = nombre;
            opt.innerHTML = nombre;
-           selectobject.appendChild(opt);                              
+           selectobject.appendChild(opt);
            arr.splice( posicion, 1 );
            console.log(arr)
            display_asignaturas(arr);
@@ -493,8 +494,8 @@
         }
         $("#panel-asignaturas").html(newHTML);
         $("#cursosArray").val(JSON.stringify(arr));
-      }  
-      
+      }
+
     });
   </script>
 @endsection
@@ -509,4 +510,3 @@ Dropzone.prototype.defaultOptions.dictCancelUpload = "Cancel upload";
 Dropzone.prototype.defaultOptions.dictCancelUploadConfirmation = "Are you sure you want to cancel this upload?";
 Dropzone.prototype.defaultOptions.dictRemoveFile = "Remove file";
 Dropzone.prototype.defaultOptions.dictMaxFilesExceeded = "You can not upload any more files."; --}}
-

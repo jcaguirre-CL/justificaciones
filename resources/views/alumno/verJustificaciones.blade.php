@@ -107,7 +107,7 @@
                       <label for="nombreDocente" class="control-label">Asignatura(s) a justificar:</label>
                         <div class="col-md-12 col-sm-12 col-xs-12 f orm-group has-feedback">
                             @foreach ($listaAsignaturasJustificadas as $obj)
-                            <span class="btn btn-primary" >{{ $obj->ASIGNATURA }}</span>
+                            <span class="btn btn-primary" >{{ $obj->ASIGNATURA.' - '.$obj->NOMBRE_DOC.' '.$obj->APEP_DOC}}</span>
                             @endforeach
                         </div>
                       </div>
