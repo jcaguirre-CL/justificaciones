@@ -52,14 +52,14 @@ class SuJustificacionController extends Controller
         //dd($justifications);
         $datosAlumno = DB::table('datos_semestre')->where([
             ['correo_alum', 'like', $justifications->CORREO_ALUM],
-            ['nom_asig', 'like', $justifications->asignatura]
+            ['nom_asig', 'like', $justifications->ASIGNATURA]
         ])->first();
 
         $imagenes = DB::table('documento')
             ->select('url','nfolio')
             ->where('nfolio','like', $justifications->NFOLIO)
             ->get();
-         
+
         return view('super/verJustificaciones', [
             'justifications' => $justifications,
             'datosAlumno' => $datosAlumno,

@@ -15,25 +15,25 @@ class SuperController extends Controller
    public function index()
     {
         $listaJustificacionesValidando = DB::table('justifications')
-            ->select('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
+            ->select('justifications.ID_DATO','NFOLIO', 'justifications.RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
             ->join('datos_semestre', 'justifications.correo_alum', 'datos_semestre.correo_alum')
             ->where([['estado', 'like', 'Pendiente']])
             ->groupBy('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
             ->get();
 
         $listaJustificacionesAprobadas = DB::table('justifications')
-            ->select('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
+            ->select('justifications.ID_DATO','NFOLIO', 'justifications.RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
             ->join('datos_semestre', 'justifications.correo_alum', 'datos_semestre.correo_alum')
             ->where([['estado', 'like', 'Aprobado']])
             ->groupBy('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
-            ->limit(1000)->get();
+            ->get();
 
         $listaJustificacionesRechazadas = DB::table('justifications')
-            ->select('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
+            ->select('justifications.ID_DATO','NFOLIO', 'justifications.RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
             ->join('datos_semestre', 'justifications.correo_alum', 'datos_semestre.correo_alum')
             ->where([['estado', 'like', 'Rechazado']])
             ->groupBy('justifications.ID_DATO','NFOLIO', 'RUT_ALU', 'justifications.NOMBRE_ALUM', 'FEC_SOL', 'FEC_JUS', 'ASIGNATURA','ESTADO')
-            ->limit(1000)->get();
+            ->get();
 
         return view('super/index', [
             'listaJustificacionesValidando' => $listaJustificacionesValidando,
