@@ -8,6 +8,7 @@ class Justification extends Model
 {
     const CREATED_AT = 'fec_sol';
     const CREATED_ON = 'fecha_sol';
+    const CREATED_IN = 'fecha_sol';
     const UPDATED_AT = 'updated_at';
     public $primaryKey = 'ID_DATO';
 
