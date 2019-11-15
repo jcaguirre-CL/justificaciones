@@ -32,7 +32,7 @@ class ToTeacher extends Mailable
      */
     public function build()
     {
-        return $this->subject('Resolución de justificación')
+        return $this->subject('Resolución de justificación-APROBADA')
             ->markdown('correos.justificaciones.aprobadas.profesor')
             ->with([
                 // Justification
